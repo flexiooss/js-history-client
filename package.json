@@ -1,0 +1,24 @@
+{
+  "name": "@flexio-oss/js-history-client",
+  "version": "1.0.0-dev",
+  "description": "Handler for browser history",
+  "main": "index.js",
+  "repository": "https://github.com/flexiooss/js-history-client.git",
+  "author": "Thomas Chatelain (https://github.com/TomAchT)",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@flexio-corp/js-common-parent": "0.0.0-dev"
+  },
+  "devDependencies": {
+    "code-altimeter-js": "https://github.com/flexiooss/code-altimeter-js.git"
+  },
+  "hotballoon-shed": {
+    "build": {
+      "builder": "webpack4"
+    },
+    "test": {
+      "tester": "code-altimeter-js",
+      "path": "src/test"
+    }
+  }
+}
