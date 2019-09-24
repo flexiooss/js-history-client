@@ -8,6 +8,7 @@ export class HistoryClient {
    * @return {this}
    */
   pushState(historyState) {
+    throw new Error('should be override')
   }
 
   /**
@@ -15,6 +16,7 @@ export class HistoryClient {
    * @param {HistoryClient~onPopStateClb} clb
    */
   onPopState(clb) {
+    throw new Error('should be override')
   }
 
   /**
@@ -26,5 +28,6 @@ export class HistoryClient {
    * return {HistoryState}
    */
   state() {
+    throw new Error('should be override')
   }
 }

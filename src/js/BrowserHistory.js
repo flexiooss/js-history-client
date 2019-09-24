@@ -1,10 +1,11 @@
 import {globalFlexioImport} from '@flexio-oss/global-import-registry'
 import {assertType, isFunction} from '@flexio-oss/assert'
+import {HistoryClient} from './HistoryClient'
 
 /**
  * @implements {HistoryClient}
  */
-export class BrowserHistory {
+export class BrowserHistory extends HistoryClient {
   /**
    *
    * @param {HistoryClient~onPopStateClb} clb
