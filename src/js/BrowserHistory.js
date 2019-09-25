@@ -18,7 +18,7 @@ export class BrowserHistory extends HistoryClient {
 
     window.addEventListener('popstate', (event) => {
       clb(new globalFlexioImport.io.flexio.js_history_client.types.HistoryStateBuilder()
-        .location(
+        .url(
           new globalFlexioImport.io.flexio.extended_flex_types.types
             .FlexUrlBuilder()
             .value(event.state.location)
@@ -42,7 +42,26 @@ export class BrowserHistory extends HistoryClient {
     history.pushState(
       historyState.state(),
       '',
-      historyState.location().value()
+      historyState.url().value()
+    )
+
+    return this
+  }
+
+  /**
+   *
+   * @param {HistoryState} historyState
+   * @return {this}
+   */
+  replaceState(historyState) {
+    assertType(historyState instanceof globalFlexioImport.io.flexio.js_history_client.types.HistoryState,
+      'BrowserHistory:replaceState: `historyState` argument should be HistoryState'
+    )
+
+    history.replaceState(
+      historyState.state(),
+      '',
+      historyState.url().value()
     )
 
     return this
@@ -54,7 +73,7 @@ export class BrowserHistory extends HistoryClient {
   state() {
 
     return new globalFlexioImport.io.flexio.js_history_client.types.HistoryStateBuilder()
-      .location(
+      .url(
         new globalFlexioImport.io.flexio.extended_flex_types.types
           .FlexUrlBuilder()
           .value(history.state.location)

@@ -1,4 +1,4 @@
 HistoryState:
-  location:
+  url:
     $value-object: io.flexio.extended_flex_types.types.FlexUrl
   state: object

@@ -13,6 +13,15 @@ export class HistoryClient {
 
   /**
    *
+   * @param {HistoryState} historyState
+   * @return {this}
+   */
+  replaceState(historyState) {
+    throw new Error('should be override')
+  }
+
+  /**
+   *
    * @param {HistoryClient~onPopStateClb} clb
    */
   onPopState(clb) {
