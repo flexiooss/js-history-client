@@ -1,6 +1,7 @@
 import {globalFlexioImport} from '@flexio-oss/global-import-registry'
 import {assertType, isFunction} from '@flexio-oss/assert'
 import {HistoryClient} from './HistoryClient'
+import {HistoryStateBuilder} from '../../generated/io/flexio/js_history_client/types/HistoryState'
 
 /**
  * @implements {HistoryClient}
@@ -82,5 +83,33 @@ export class BrowserHistory extends HistoryClient {
       .state(history.state.state)
       .build()
 
+  }
+
+  historyStateBuilder() {
+    return new globalFlexioImport.io.flexio.js_history_client.types.HistoryStateBuilder()
+  }
+
+  /**
+   * @param {HistoryState} instance
+   * @returns {HistoryStateBuilder}
+   */
+  historyStateFrom(instance) {
+    return globalFlexioImport.io.flexio.js_history_client.types.HistoryStateBuilder.from(instance)
+  }
+
+  /**
+   * @param {string} json
+   * @returns {HistoryStateBuilder}
+   */
+  historyStateFromJSON(json) {
+    return globalFlexioImport.io.flexio.js_history_client.types.HistoryStateBuilder.fromJSON(json)
+  }
+
+  /**
+   * @param {Object} object
+   * @returns {HistoryStateBuilder}
+   */
+  historyStateFromObject(object) {
+    return globalFlexioImport.io.flexio.js_history_client.types.HistoryStateBuilder.fromObject(object)
   }
 }
