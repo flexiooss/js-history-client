@@ -85,6 +85,18 @@ export class BrowserHistory extends HistoryClient {
 
   }
 
+  /**
+   *
+   * @return {number}
+   */
+  length() {
+    return history.length
+  }
+
+  /**
+   *
+   * @return {HistoryStateBuilder}
+   */
   historyStateBuilder() {
     return new globalFlexioImport.io.flexio.js_history_client.types.HistoryStateBuilder()
   }
@@ -112,4 +124,5 @@ export class BrowserHistory extends HistoryClient {
   historyStateFromObject(object) {
     return globalFlexioImport.io.flexio.js_history_client.types.HistoryStateBuilder.fromObject(object)
   }
+
 }

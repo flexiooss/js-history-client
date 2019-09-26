@@ -39,4 +39,43 @@ export class HistoryClient {
   state() {
     throw new Error('should be override')
   }
+
+  /**
+   * @return {Number}
+   */
+  length() {
+    throw new Error('should be override')
+  }
+
+  /**
+   *
+   * @return {HistoryStateBuilder}
+   */
+  historyStateBuilder() {
+    throw new Error('should be override')
+  }
+
+  /**
+   * @param {HistoryState} instance
+   * @returns {HistoryStateBuilder}
+   */
+  historyStateFrom(instance) {
+    throw new Error('should be override')
+  }
+
+  /**
+   * @param {string} json
+   * @returns {HistoryStateBuilder}
+   */
+  historyStateFromJSON(json) {
+    throw new Error('should be override')
+  }
+
+  /**
+   * @param {Object} object
+   * @returns {HistoryStateBuilder}
+   */
+  historyStateFromObject(object) {
+    throw new Error('should be override')
+  }
 }
