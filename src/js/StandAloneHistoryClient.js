@@ -2,13 +2,12 @@ import {HistoryClient} from './HistoryClient'
 import {globalFlexioImport} from '@flexio-oss/global-import-registry'
 import {EventHandlerBase, EventListenerConfigBuilder} from '@flexio-oss/event-handler'
 import {HistoryStateArray} from './HistoryStateArray'
-import {assertType, isNumber} from '../../../assert'
-import {HistoryStateNotFoundException} from './HistoryStateNotFoundException'
+import {assertType, isNumber} from '@flexio-oss/assert'
 
 /**
  * @implements {HistoryClient}
  */
-export class FakeHistoryClient extends HistoryClient {
+export class StandAloneHistoryClient extends HistoryClient {
   constructor() {
     super()
     /**

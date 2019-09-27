@@ -1,6 +1,6 @@
 /* global runTest */
 import {TestCase} from 'code-altimeter-js'
-import {FakeHistoryClient} from '../js/FakeHistoryClient'
+import {StandAloneHistoryClient} from '../js/StandAloneHistoryClient'
 import '@flexio-oss/extended-flex-types'
 import {globalFlexioImport} from '@flexio-oss/global-import-registry'
 import '@flexio-oss/extended-flex-types'
@@ -8,13 +8,13 @@ import '../../generated/io/package'
 
 const assert = require('assert')
 
-export class FakeHistory extends TestCase {
+export class StandAloneHistoryClientTest extends TestCase {
   setUp() {
     /**
      *
-     * @type {FakeHistoryClient}
+     * @type {StandAloneHistoryClient}
      */
-    this.historyClient = new FakeHistoryClient()
+    this.historyClient = new StandAloneHistoryClient()
   }
 
   historyState1() {
@@ -144,4 +144,4 @@ export class FakeHistory extends TestCase {
 
 }
 
-runTest(FakeHistory)
+runTest(StandAloneHistoryClientTest)
