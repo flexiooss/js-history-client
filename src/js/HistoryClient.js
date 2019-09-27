@@ -1,3 +1,5 @@
+import {globalFlexioImport} from '@flexio-oss/global-import-registry'
+
 /**
  * @interface
  */
@@ -23,6 +25,7 @@ export class HistoryClient {
   /**
    *
    * @param {HistoryClient~onPopStateClb} clb
+   * @return {string}
    */
   onPopState(clb) {
     throw new Error('should be override')
@@ -52,7 +55,7 @@ export class HistoryClient {
    * @return {HistoryStateBuilder}
    */
   historyStateBuilder() {
-    throw new Error('should be override')
+    return new globalFlexioImport.io.flexio.js_history_client.types.HistoryStateBuilder()
   }
 
   /**
@@ -60,7 +63,7 @@ export class HistoryClient {
    * @returns {HistoryStateBuilder}
    */
   historyStateFrom(instance) {
-    throw new Error('should be override')
+    return globalFlexioImport.io.flexio.js_history_client.types.HistoryStateBuilder.from(instance)
   }
 
   /**
@@ -68,7 +71,7 @@ export class HistoryClient {
    * @returns {HistoryStateBuilder}
    */
   historyStateFromJSON(json) {
-    throw new Error('should be override')
+    return globalFlexioImport.io.flexio.js_history_client.types.HistoryStateBuilder.fromJSON(json)
   }
 
   /**
@@ -76,6 +79,6 @@ export class HistoryClient {
    * @returns {HistoryStateBuilder}
    */
   historyStateFromObject(object) {
-    throw new Error('should be override')
+    return globalFlexioImport.io.flexio.js_history_client.types.HistoryStateBuilder.fromObject(object)
   }
 }
