@@ -6,6 +6,7 @@ import {HistoryClient} from './HistoryClient'
  * @implements {HistoryClient}
  */
 export class BrowserHistory extends HistoryClient {
+
   /**
    *
    * @param {HistoryClient~onPopStateClb} clb
@@ -61,7 +62,7 @@ export class BrowserHistory extends HistoryClient {
     )
 
     history.replaceState(
-      historyState.state(),
+      historyState.toObject(),
       '',
       historyState.url().value()
     )
@@ -73,17 +74,33 @@ export class BrowserHistory extends HistoryClient {
    * @return {HistoryState} historyState
    */
   state() {
-
-    return new globalFlexioImport.io.flexio.js_history_client.types.HistoryStateBuilder()
-      .url(
-        new globalFlexioImport.io.flexio.extended_flex_types.types
-          .FlexUrlBuilder()
-          .value(history.state.location)
-          .build()
-      )
-      .state(history.state.state)
+    return this.historyStateFromObject(history.state)
       .build()
+  }
 
+  /**
+   * @return {HistoryState}
+   */
+  back() {
+    history.back()
+    return this.state()
+  }
+
+  /**
+   * @return {HistoryState}
+   */
+  forward() {
+    history.forward()
+    return this.state()
+  }
+
+  /**
+   * @param {number} delta
+   * @return {HistoryState}
+   */
+  go(delta) {
+    history.go(delta)
+    return this.state()
   }
 
   /**

@@ -41,6 +41,18 @@ export class FakeHistory extends TestCase {
       .build()
   }
 
+  historyState3() {
+    return this.historyClient
+      .historyStateBuilder()
+      .url(
+        new globalFlexioImport.io.flexio.extended_flex_types
+          .FlexUrlBuilder()
+          .value('https://ahaha.fr')
+          .build()
+      )
+      .build()
+  }
+
   testPush() {
 
     const historyState = this.historyState1()
@@ -77,6 +89,56 @@ export class FakeHistory extends TestCase {
     assert(
       this.historyClient.length() === 2,
       'lenghth should be 2'
+    )
+  }
+
+  testNavigation() {
+
+    this.historyClient
+      .pushState(
+        this.historyState1()
+      )
+      .pushState(
+        this.historyState2()
+      )
+      .pushState(
+        this.historyState3()
+      )
+
+    assert.deepEqual(
+      this.historyClient.state(),
+      this.historyState3(),
+      'history should to be on state3'
+    )
+    assert.deepEqual(
+      this.historyClient.forward(),
+      this.historyState3(),
+      'history shouldn\'t changed'
+    )
+    assert.deepEqual(
+      this.historyClient.back(),
+      this.historyState2(),
+      'history should to be on state2'
+    )
+    assert.deepEqual(
+      this.historyClient.forward(),
+      this.historyState3(),
+      'history should to be on state3'
+    )
+    assert.deepEqual(
+      this.historyClient.go(1),
+      this.historyState3(),
+      'history should to be on state3'
+    )
+    assert.deepEqual(
+      this.historyClient.go(-4),
+      this.historyState3(),
+      'history should to be on state3'
+    )
+    assert.deepEqual(
+      this.historyClient.go(-2),
+      this.historyState1(),
+      'history should to be on state1'
     )
   }
 

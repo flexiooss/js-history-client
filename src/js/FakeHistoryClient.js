@@ -2,6 +2,8 @@ import {HistoryClient} from './HistoryClient'
 import {globalFlexioImport} from '@flexio-oss/global-import-registry'
 import {EventHandlerBase, EventListenerConfigBuilder} from '@flexio-oss/event-handler'
 import {HistoryStateArray} from './HistoryStateArray'
+import {assertType, isNumber} from '../../../assert'
+import {HistoryStateNotFoundException} from './HistoryStateNotFoundException'
 
 /**
  * @implements {HistoryClient}
@@ -79,6 +81,45 @@ export class FakeHistoryClient extends HistoryClient {
    */
   state() {
     return this.__state.get(this.__current)
+  }
+
+  /**
+   * @return {HistoryState}
+   */
+  back() {
+    if (this.__current > 0) {
+      this.__current--
+    }
+    return this.state()
+  }
+
+  /**
+   * @return {HistoryState}
+   */
+  forward() {
+    if (this.__current < this.length() - 1) {
+      this.__current++
+    }
+    return this.state()
+  }
+
+  /**
+   * @param {number} delta
+   * @return {HistoryState}
+   */
+  go(delta) {
+    assertType(
+      isNumber(delta),
+      'FakeHistoryClient:go: `delta` argument should be a number'
+    )
+
+    const targetIndex = this.__current + delta
+
+    if (targetIndex >= 0 && targetIndex < this.length()) {
+      this.__current = targetIndex
+    }
+
+    return this.state()
   }
 
   /**

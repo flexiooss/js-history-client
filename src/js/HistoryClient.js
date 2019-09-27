@@ -37,9 +37,31 @@ export class HistoryClient {
    */
 
   /**
-   * return {HistoryState}
+   * @return {HistoryState}
    */
   state() {
+    throw new Error('should be override')
+  }
+
+  /**
+   * @return {HistoryState}
+   */
+  back() {
+    throw new Error('should be override')
+  }
+
+  /**
+   * @return {HistoryState}
+   */
+  forward() {
+    throw new Error('should be override')
+  }
+
+  /**
+   * @param {number} delta
+   * @return {HistoryState}
+   */
+  go(delta) {
     throw new Error('should be override')
   }
 
