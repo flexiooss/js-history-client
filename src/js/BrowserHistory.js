@@ -21,7 +21,7 @@ export class BrowserHistory extends HistoryClient {
     window.addEventListener('popstate', (event) => {
       clb(new globalFlexioImport.io.flexio.js_history_client.types.HistoryStateBuilder()
         .url(
-          new globalFlexioImport.io.flexio.extended_flex_types.types
+          new globalFlexioImport.io.flexio.extended_flex_types
             .FlexUrlBuilder()
             .value(event.state.location)
             .build()
