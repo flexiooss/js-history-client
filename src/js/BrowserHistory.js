@@ -1,5 +1,5 @@
 import {globalFlexioImport} from '@flexio-oss/global-import-registry'
-import {assertType, isFunction} from '@flexio-oss/assert'
+import {assertType, isFunction, isNull} from '@flexio-oss/assert'
 import {HistoryClient} from './HistoryClient'
 
 /**
@@ -74,7 +74,8 @@ export class BrowserHistory extends HistoryClient {
    * @return {HistoryState} historyState
    */
   state() {
-    return this.historyStateFromObject(history.state)
+    const state = isNull(history.state) ? {} : history.state
+    return this.historyStateFromObject(state)
       .build()
   }
 
