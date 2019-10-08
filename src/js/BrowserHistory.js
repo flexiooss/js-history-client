@@ -1,6 +1,6 @@
-import {globalFlexioImport} from '@flexio-oss/global-import-registry'
-import {assertType, isFunction, isNull} from '@flexio-oss/assert'
-import {HistoryClient} from './HistoryClient'
+import { globalFlexioImport } from '@flexio-oss/global-import-registry'
+import { assertType, isFunction, isNull } from '@flexio-oss/assert'
+import { HistoryClient } from './HistoryClient'
 
 /**
  * @implements {HistoryClient}
@@ -19,16 +19,24 @@ export class BrowserHistory extends HistoryClient {
     )
 
     window.addEventListener('popstate', (event) => {
-      clb(new globalFlexioImport.io.flexio.js_history_client.types.HistoryStateBuilder()
-        .url(
-          new globalFlexioImport.io.flexio.extended_flex_types
-            .FlexUrlBuilder()
-            .value(event.state.location)
-            .build()
-        )
-        .state(event.state.state)
-        .build())
+      console.log(event)
+
+      let url
+      let state
+
+      if (isNull(event.state)) {
+        state = new globalFlexioImport.io.flexio.js_history_client.types.HistoryStateBuilder()
+          .build()
+      } else {
+
+        state = globalFlexioImport.io.flexio.js_history_client.types.HistoryStateBuilder
+          .fromObject(event.state)
+          .build()
+      }
+
+      clb(state)
     })
+
     return 'noToken'
   }
 
@@ -43,7 +51,7 @@ export class BrowserHistory extends HistoryClient {
     )
 
     history.pushState(
-      historyState.state(),
+      historyState.toObject(),
       '',
       historyState.url().value()
     )
