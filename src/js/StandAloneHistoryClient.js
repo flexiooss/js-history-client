@@ -38,7 +38,7 @@ export class StandAloneHistoryClient extends HistoryClient {
   /**
    *
    * @param {HistoryState} historyState
-   * @return {this}
+   * @return {StandAloneHistoryClient}
    */
   pushState(historyState) {
     this.__state.push(historyState)
@@ -49,7 +49,7 @@ export class StandAloneHistoryClient extends HistoryClient {
   /**
    *
    * @param {HistoryState} historyState
-   * @return {this}
+   * @return {StandAloneHistoryClient}
    */
   replaceState(historyState) {
     this.__state[this.__current] = historyState
@@ -109,7 +109,7 @@ export class StandAloneHistoryClient extends HistoryClient {
   go(delta) {
     assertType(
       isNumber(delta),
-      'FakeHistoryClient:go: `delta` argument should be a number'
+      'StandAloneHistoryClient:go: `delta` argument should be a number'
     )
 
     const targetIndex = this.__current + delta
