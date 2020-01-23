@@ -19,9 +19,6 @@ export class BrowserHistory extends HistoryClient {
     )
 
     window.addEventListener('popstate', (event) => {
-      console.log(event)
-
-      let url
       let state
 
       if (isNull(event.state)) {
