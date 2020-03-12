@@ -1,6 +1,6 @@
 {
   "name": "@flexio-oss/js-history-client",
-  "version": "1.0.0-dev",
+  "version": "1.0.0",
   "description": "Handler for browser history",
   "main": "index.js",
   "repository": "https://github.com/flexiooss/js-history-client.git",
